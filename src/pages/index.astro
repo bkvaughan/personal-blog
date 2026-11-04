@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../site';
+import { getCampaigns, getSessions, href, formatDate } from '../lib/data';
+
+const campaigns = await Promise.all(
+  (await getCampaigns()).map(async (c) => {
+    const sessions = await getSessions(c.id);
+    return { c, count: sessions.length, latest: sessions.at(-1) };
+  }),
+);
+---
+
+<Base>
+  <section class="hero">
+    <h1 class="display">{SITE.title}</h1>
+    <p class="lede">{SITE.tagline}</p>
+    <hr class="rule" />
+  </section>
+
+  {campaigns.length === 0 && <p class="empty">No campaigns yet. The dark waits.</p>}
+
+  <div class="grid">
+    {
+      campaigns.map(({ c, count, latest }) => (
+        <a
+          class="card panel reveal"
+          href={href(`campaigns/${c.id}/`)}
+          style={`--accent:${c.data.theme.accent};--mist:${c.data.theme.mist}`}
+        >
+          <div class="card-glow" />
+          <p class="eyebrow">
+            <span class="status">{c.data.status}</span>
+          </p>
+          <h2>{c.data.name}</h2>
+          <p>{c.data.tagline}</p>
+          <p class="meta label">
+            <span>
+              {count} {count === 1 ? 'session' : 'sessions'}
+            </span>
+            {latest && <span>Last played {formatDate(latest.data.date)}</span>}
+          </p>
+        </a>
+      ))
+    }
+  </div>
+</Base>

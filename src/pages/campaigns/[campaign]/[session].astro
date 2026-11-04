@@ -1,0 +1,81 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import {
+  getCampaigns,
+  getSessions,
+  sessionSlug,
+  sessionUrl,
+  roman,
+  formatDate,
+  href,
+  type Session,
+} from '../../../lib/data';
+
+export async function getStaticPaths() {
+  const campaigns = await getCampaigns();
+  const paths = await Promise.all(
+    campaigns.map(async (campaign) => {
+      const sessions = await getSessions(campaign.id);
+      return sessions.map((session, i) => ({
+        params: { campaign: campaign.id, session: sessionSlug(session) },
+        props: { session, prev: sessions[i - 1], next: sessions[i + 1] },
+      }));
+    }),
+  );
+  return paths.flat();
+}
+
+const { session, prev, next } = Astro.props as { session: Session; prev?: Session; next?: Session };
+const campaign = (await getEntry(session.data.campaign))!;
+const { Content } = await render(session);
+const { data } = session;
+const fallen = new Set(data.fallen);
+---
+
+<Base title={`${data.title} — ${campaign.data.name}`} description={data.summary} theme={campaign.data.theme}>
+  <nav class="breadcrumb">
+    <a href={href(`campaigns/${campaign.id}/`)}>← {campaign.data.name}</a>
+  </nav>
+
+  <header class="log-head">
+    <p class="eyebrow">Session {roman(data.session)}</p>
+    <h1 class="display">{data.title}</h1>
+    <p class="meta label">
+      <span>{formatDate(data.date)}</span>
+      {data.ingameDate && <span>{data.ingameDate}</span>}
+    </p>
+    {
+      data.characters.length > 0 && (
+        <ul class="roster" aria-label="Characters present">
+          {data.characters.map((c) => (
+            <li class={fallen.has(c) ? 'dead' : undefined}>{c}</li>
+          ))}
+        </ul>
+      )
+    }
+  </header>
+
+  <article class="prose panel">
+    <Content />
+  </article>
+
+  <nav class="pager" aria-label="Session navigation">
+    {
+      prev && (
+        <a class="prev panel" href={sessionUrl(prev)}>
+          <span class="label">← Session {roman(prev.data.session)}</span>
+          <span class="title">{prev.data.title}</span>
+        </a>
+      )
+    }
+    {
+      next && (
+        <a class="next panel" href={sessionUrl(next)}>
+          <span class="label">Session {roman(next.data.session)} →</span>
+          <span class="title">{next.data.title}</span>
+        </a>
+      )
+    }
+  </nav>
+</Base>

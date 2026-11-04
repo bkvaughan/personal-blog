@@ -1,0 +1,28 @@
+# One entry per campaign. The key is the campaign's URL slug and must match the
+# folder name under src/content/sessions/.
+#
+# theme.effect: embers | ash | snow | spores | none
+# status: active | hiatus | complete
+
+the-gloaming-deep:
+  name: The Gloaming Deep
+  tagline: Beneath the drowned abbey, the bells still ring.
+  description: >-
+    A band of desperate souls descends into the flooded catacombs below the
+    Abbey of Saint Veyle, chasing rumours of a reliquary that answers prayers.
+  status: active
+  started: 2026-10-04
+  theme:
+    accent: "#c9a45c"
+    mist: "#2d5252"
+    effect: spores
+
+ashen-crown:
+  name: The Ashen Crown
+  tagline: Three heirs. One throne. A kingdom set alight.
+  status: hiatus
+  started: 2026-06-14
+  theme:
+    accent: "#d0552f"
+    mist: "#3a2c28"
+    effect: embers

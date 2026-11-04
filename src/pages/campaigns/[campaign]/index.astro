@@ -1,0 +1,78 @@
+---
+import Base from '../../../layouts/Base.astro';
+import {
+  getCampaigns,
+  getSessions,
+  assertUniqueNumbers,
+  sessionUrl,
+  roman,
+  formatDate,
+  href,
+  type Campaign,
+} from '../../../lib/data';
+
+export async function getStaticPaths() {
+  const campaigns = await getCampaigns();
+  return campaigns.map((campaign) => ({ params: { campaign: campaign.id }, props: { campaign } }));
+}
+
+const { campaign } = Astro.props as { campaign: Campaign };
+const sessions = await getSessions(campaign.id);
+assertUniqueNumbers(sessions);
+
+const fallen = sessions.flatMap((s) => s.data.fallen.map((name) => ({ name, session: s.data.session })));
+---
+
+<Base title={campaign.data.name} description={campaign.data.tagline} theme={campaign.data.theme}>
+  <nav class="breadcrumb"><a href={href()}>← All chronicles</a></nav>
+
+  <header class="campaign-head">
+    <p class="eyebrow">{campaign.data.status}</p>
+    <h1 class="display">{campaign.data.name}</h1>
+    <p class="lede">{campaign.data.tagline}</p>
+    {campaign.data.description && <p class="description">{campaign.data.description}</p>}
+    <hr class="rule" />
+  </header>
+
+  {sessions.length === 0 && <p class="empty">No sessions logged yet.</p>}
+
+  <ol class="chapters">
+    {
+      [...sessions].reverse().map((s) => (
+        <li>
+          <a class="chapter panel reveal" href={sessionUrl(s)}>
+            <span class="numeral" aria-label={`Session ${s.data.session}`}>
+              {roman(s.data.session)}
+            </span>
+            <div>
+              <h3>
+                {s.data.title}
+                {s.data.draft && ' (draft)'}
+              </h3>
+              <span class="label">
+                {formatDate(s.data.date)}
+                {s.data.ingameDate && ` · ${s.data.ingameDate}`}
+              </span>
+              <p>{s.data.summary}</p>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+
+  {
+    fallen.length > 0 && (
+      <section class="memorial panel reveal">
+        <h2>The Fallen</h2>
+        <ul>
+          {fallen.map((f) => (
+            <li>
+              {f.name} <small>session {roman(f.session)}</small>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+</Base>

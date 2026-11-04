@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import { href } from '../lib/data';
+---
+
+<Base title="Lost in the Dark" theme={{ accent: '#8f2a1f', mist: '#1d2626', effect: 'ash' }}>
+  <section class="hero">
+    <h1 class="display">Your torch gutters out</h1>
+    <p class="lede">There is nothing here but darkness and the sound of something breathing.</p>
+    <p><a href={href()}>Flee back to the light</a></p>
+  </section>
+</Base>
