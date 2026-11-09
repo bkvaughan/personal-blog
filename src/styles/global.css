@@ -113,32 +113,53 @@ main,
 }
 
 .site-header {
-  padding: 1.25rem clamp(1rem, 4vw, 2.5rem);
+  text-align: center;
 }
 
-.site-title {
-  display: inline-block;
-  line-height: 0;
+/* Masthead modelled on the module covers: a full-bleed colour bar with black condensed
+   caps, then the big outlined logo tucked just under it. Accent drives both, as each
+   cover's logo and bar share one colour. */
+.masthead {
+  display: block;
   color: var(--accent);
   text-decoration: none;
 }
+.masthead:hover {
+  color: var(--accent);
+  text-shadow: none;
+}
 
-/* Glyph outlines lifted from the module covers. Drawn as the covers do: accent fill, a heavy
-   black keyline, and a hard offset shadow. Takes the campaign accent the way each module's
-   logo takes its own cover colour. */
+.banner {
+  display: block;
+  padding: 0.3em 1rem 0.35em;
+  background: var(--accent);
+  border-block: 3px solid color-mix(in srgb, var(--accent) 45%, black);
+  color: #000;
+  font-family: 'Oswald', 'Futura Condensed', 'Arial Narrow', sans-serif;
+  font-weight: 500;
+  font-size: clamp(0.95rem, 3vw, 1.7rem);
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Glyph outlines lifted from the covers. Stroke and shadow give the covers' heavy black
+   keyline and hard offset. */
 .logo {
-  width: clamp(11rem, 34vw, 17rem);
+  display: block;
+  width: min(92vw, 40rem);
   height: auto;
+  margin: 0.4rem auto 0;
   fill: currentColor;
   stroke: #000;
   stroke-width: 5px;
   stroke-linejoin: round;
   paint-order: stroke;
-  filter: drop-shadow(3px 3px 0 #000);
+  filter: drop-shadow(4px 4px 0 #000);
   transition: filter 0.2s;
 }
-.site-title:hover .logo {
-  filter: drop-shadow(3px 3px 0 #000) drop-shadow(0 0 14px color-mix(in srgb, var(--accent) 45%, transparent));
+.masthead:hover .logo {
+  filter: drop-shadow(4px 4px 0 #000) drop-shadow(0 0 18px color-mix(in srgb, var(--accent) 45%, transparent));
 }
 
 main {
@@ -198,7 +219,7 @@ main {
 /* ───────────── Hero ───────────── */
 .hero {
   text-align: center;
-  padding: clamp(3rem, 12vh, 7rem) 0 clamp(2rem, 6vh, 4rem);
+  padding: clamp(1.5rem, 6vh, 3.5rem) 0 clamp(2rem, 6vh, 4rem);
 }
 .hero .display {
   font-size: clamp(3rem, 11vw, 6.5rem);
@@ -327,7 +348,7 @@ main {
 /* ───────────── Campaign page ───────────── */
 .campaign-head {
   text-align: center;
-  padding: clamp(2.5rem, 9vh, 5rem) 0 2.5rem;
+  padding: clamp(1.5rem, 5vh, 3rem) 0 2.5rem;
 }
 .campaign-head .display {
   font-size: clamp(2.8rem, 9vw, 5.5rem);

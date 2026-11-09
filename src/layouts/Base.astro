@@ -4,6 +4,7 @@ import '@fontsource/im-fell-english-sc';
 import '@fontsource/alegreya/400.css';
 import '@fontsource/alegreya/400-italic.css';
 import '@fontsource/alegreya/700.css';
+import '@fontsource/oswald/500.css';
 import '../styles/global.css';
 import { SITE } from '../site';
 import { href } from '../lib/data';
@@ -38,7 +39,8 @@ const fullTitle = title ? `${title} · ${SITE.title}` : SITE.title;
     <div class="atmo atmo-torch" aria-hidden="true"></div>
 
     <header class="site-header">
-      <a class="site-title" href={href()} aria-label="Hyperborea, home">
+      <a class="masthead" href={href()} aria-label="Hyperborea, home">
+        <span class="banner">{SITE.banner}</span>
         <HyperboreaLogo class="logo" aria-hidden="true" />
       </a>
     </header>

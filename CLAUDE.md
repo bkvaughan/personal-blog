@@ -41,7 +41,8 @@ the matching folder under `src/content/sessions/`.
 
 ## Design rules
 - Grimdark palette: charcoal, desaturated teal, bone text; lantern-amber and ember-red
-  accents. Fonts: Pirata One (display), IM Fell English SC (labels), Alegreya (body).
+  accents. Fonts: Pirata One (display), IM Fell English SC (labels), Alegreya (body),
+  Oswald (cover-style masthead banner; text in `SITE.banner`).
 - Decoration lives in the background layers (`.atmo-*` in `src/styles/global.css`,
   `src/scripts/atmosphere.ts`). Body text always sits on a solid `.panel` for readability.
 - All motion must stop under `prefers-reduced-motion`.
