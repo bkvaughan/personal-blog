@@ -1,5 +1,6 @@
 node_modules/
 dist/
+rpg-docs/
 .astro/
 .DS_Store
 .env
