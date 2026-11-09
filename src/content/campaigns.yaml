@@ -2,7 +2,7 @@
 # folder name under src/content/sessions/.
 #
 # theme.effect: embers | ash | snow | spores | none
-# status: active | hiatus | complete
+# status: active | pending | hiatus | complete
 # Accents are each module's cover logo colour; mists echo its cover art.
 # order: running order, 1 = first adventure played
 
@@ -20,7 +20,7 @@ ghost-ship-of-the-desert-dunes:
   name: Ghost Ship of the Desert Dunes
   tagline: A spectral longship sails the sand, and green stones burn in the mines below.
   order: 2
-  status: active
+  status: pending
   theme:
     accent: "#c7eafb"
     mist: "#1a2f3d"
@@ -30,7 +30,7 @@ the-vanishing-isles-of-the-summer-king:
   name: The Vanishing Isles of the Summer King
   tagline: Isles that slip in and out of the world, and the druid-king who led his sect there.
   order: 3
-  status: active
+  status: pending
   theme:
     accent: "#de5b54"
     mist: "#2a4a44"
@@ -40,7 +40,7 @@ the-lost-treasure-of-atlantis:
   name: The Lost Treasure of Atlantis
   tagline: Lightning splits the sky over Crystal Point, and something older than men keeps the switch.
   order: 4
-  status: active
+  status: pending
   theme:
     accent: "#a3c954"
     mist: "#4a1c1c"
@@ -50,7 +50,7 @@ the-sea-wolfs-daughter:
   name: The Sea-Wolf's Daughter
   tagline: The Sea-Wolf's daughter vanished in the night, and every trail leads into Brigand's Bay.
   order: 5
-  status: active
+  status: pending
   theme:
     accent: "#f0b357"
     mist: "#3d3542"

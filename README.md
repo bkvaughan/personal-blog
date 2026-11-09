@@ -46,7 +46,7 @@ Add an entry to `src/content/campaigns.yaml`, then create its folder under `src/
 frozen-pass:
   name: The Frozen Pass
   tagline: Nothing that crosses the mountain in winter comes back whole.
-  status: active            # active | hiatus | complete
+  status: active            # active | pending | hiatus | complete
   theme:
     accent: "#9fc3d1"       # torchlight and highlight colour
     mist: "#22343d"         # fog and background tint

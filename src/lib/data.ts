@@ -27,7 +27,7 @@ export async function getSessions(campaignId?: string): Promise<Session[]> {
 }
 
 export async function getCampaigns(): Promise<Campaign[]> {
-  const statusRank = { active: 0, hiatus: 1, complete: 2 };
+  const statusRank = { active: 0, pending: 1, hiatus: 2, complete: 3 };
   const all = await getCollection('campaigns');
   // Running order wins so the list reads as one saga; unordered campaigns fall to the end.
   return all.sort(
