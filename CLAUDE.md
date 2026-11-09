@@ -48,6 +48,8 @@ the matching folder under `src/content/sessions/`.
 - Internal links go through `href()` in `src/lib/data.ts` so the GitHub Pages base path works.
 - Don't use Shadowdark's logo, trade dress, or copied rulebook text.
 
-## Sample content
-`the-gloaming-deep` and `ashen-crown` are placeholder campaigns for demonstrating themes.
-Delete them (YAML entries + session folders) once real campaigns exist.
+## Campaigns
+The five campaigns in `src/content/campaigns.yaml` are the Hyperborea modules in `rpg-docs/`
+(git-ignored PDFs). Each theme's accent is that module's cover-logo colour. `order:` is the
+running order and sorts the home-page cards (it beats status). Session folders
+hold a `.gitkeep` until the first log lands.

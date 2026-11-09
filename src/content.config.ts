@@ -12,6 +12,8 @@ const campaigns = defineCollection({
     name: z.string(),
     tagline: z.string(),
     description: z.string().optional(),
+    // Position in the running order; cards list in this order.
+    order: z.number().int().positive().optional(),
     status: z.enum(['active', 'hiatus', 'complete']).default('active'),
     started: z.coerce.date().optional(),
     theme: z.object({

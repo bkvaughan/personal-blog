@@ -27,10 +27,14 @@ export async function getSessions(campaignId?: string): Promise<Session[]> {
 }
 
 export async function getCampaigns(): Promise<Campaign[]> {
-  const order = { active: 0, hiatus: 1, complete: 2 };
+  const statusRank = { active: 0, hiatus: 1, complete: 2 };
   const all = await getCollection('campaigns');
+  // Running order wins so the list reads as one saga; unordered campaigns fall to the end.
   return all.sort(
-    (a, b) => order[a.data.status] - order[b.data.status] || a.data.name.localeCompare(b.data.name),
+    (a, b) =>
+      (a.data.order ?? Infinity) - (b.data.order ?? Infinity) ||
+      statusRank[a.data.status] - statusRank[b.data.status] ||
+      a.data.name.localeCompare(b.data.name),
   );
 }
 
