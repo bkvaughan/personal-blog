@@ -16,7 +16,7 @@ const campaigns = defineCollection({
     started: z.coerce.date().optional(),
     theme: z.object({
       accent: hex, // torchlight, drop caps, highlights
-      mist: hex, // tint of the fog and background glow
+      mist: hex, // tint of card glows
       effect: z.enum(EFFECTS).default('embers'),
     }),
   }),
