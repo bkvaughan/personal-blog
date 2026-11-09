@@ -117,30 +117,28 @@ main,
 }
 
 .site-title {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-label);
-  font-size: 1.15rem;
-  letter-spacing: 0.08em;
-  color: var(--ink);
+  display: inline-block;
+  line-height: 0;
+  color: var(--accent);
   text-decoration: none;
 }
 
-.flame {
-  width: 0.9em;
-  height: 1.2em;
-  fill: var(--accent);
-  filter: drop-shadow(0 0 6px var(--accent));
-  transform-origin: 50% 100%;
-  animation: flame 2.4s ease-in-out infinite;
+/* Glyph outlines lifted from the module covers. Drawn as the covers do: accent fill, a heavy
+   black keyline, and a hard offset shadow. Takes the campaign accent the way each module's
+   logo takes its own cover colour. */
+.logo {
+  width: clamp(11rem, 34vw, 17rem);
+  height: auto;
+  fill: currentColor;
+  stroke: #000;
+  stroke-width: 5px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+  filter: drop-shadow(3px 3px 0 #000);
+  transition: filter 0.2s;
 }
-
-@keyframes flame {
-  0%, 100% { transform: scale(1, 1) rotate(0deg); opacity: 1; }
-  25% { transform: scale(0.94, 1.06) rotate(-2deg); opacity: 0.9; }
-  50% { transform: scale(1.04, 0.95) rotate(1.5deg); opacity: 1; }
-  75% { transform: scale(0.97, 1.04) rotate(-1deg); opacity: 0.85; }
+.site-title:hover .logo {
+  filter: drop-shadow(3px 3px 0 #000) drop-shadow(0 0 14px color-mix(in srgb, var(--accent) 45%, transparent));
 }
 
 main {
