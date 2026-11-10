@@ -213,11 +213,14 @@ main {
   animation: ink-in 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
+/* Settles from slightly large rather than widely tracked: letter-spacing changes the line
+   width, so long titles wrapped mid-animation and snapped back when it finished. A
+   transform never touches layout. */
 @keyframes ink-in {
   from {
     opacity: 0;
     filter: blur(10px);
-    letter-spacing: 0.12em;
+    transform: scale(1.06);
   }
 }
 
