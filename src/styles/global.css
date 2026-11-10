@@ -145,11 +145,31 @@ main,
 
 /* Glyph outlines lifted from the covers. Stroke and shadow give the covers' heavy black
    keyline and hard offset. */
-.logo {
+.logo-wrap {
+  position: relative;
   display: block;
   width: min(92vw, 40rem);
-  height: auto;
   margin: 0.4rem auto 0;
+  container-type: inline-size;
+}
+
+/* Small mark tucked against the logo's top-right shoulder, as on the covers. Sized off
+   the logo's width so it stays in proportion at every screen size. */
+.tm {
+  position: absolute;
+  top: 18%;
+  right: -2.2cqi;
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-size: max(0.6rem, 2.2cqi);
+  line-height: 1;
+  color: currentColor;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.logo {
+  display: block;
+  width: 100%;
+  height: auto;
   fill: currentColor;
   stroke: #000;
   stroke-width: 5px;

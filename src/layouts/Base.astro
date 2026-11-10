@@ -41,7 +41,10 @@ const fullTitle = title ? `${title} · ${SITE.title}` : SITE.title;
     <header class="site-header">
       <a class="masthead" href={href()} aria-label="Hyperborea, home">
         <span class="banner">{SITE.banner}</span>
-        <HyperboreaLogo class="logo" aria-hidden="true" />
+        <span class="logo-wrap">
+          <HyperboreaLogo class="logo" aria-hidden="true" />
+          <span class="tm" aria-hidden="true">™</span>
+        </span>
       </a>
     </header>
 
